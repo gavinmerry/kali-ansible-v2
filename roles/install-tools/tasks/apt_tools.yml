@@ -75,4 +75,5 @@
       - remmina
       - obsidian
       - sprayhound
+      - libkrb5-dev
     state: latest
