@@ -1,0 +1,11 @@
+---
+- name: Kali Linux Setup
+  hosts: localhost
+  become: true
+
+  roles:
+    - common
+    - customize-terminal
+    - install-tools
+    - install-pro
+    - dotfiles
