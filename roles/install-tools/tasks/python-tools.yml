@@ -5,7 +5,6 @@
     source: "{{ item.source }}"
     state: latest
   loop:
-    - { name: 'Netexec', source: 'git+https://github.com/Pennyw0rth/NetExec.git' }
     - { name: 'certipy-ad', source: 'git+https://github.com/ly4k/Certipy.git' }
     - { name: 'autorecon', source: 'git+https://github.com/Tib3rius/AutoRecon.git' }
     - { name: 'roadrecon', source: 'git+https://github.com/dirkjanm/ROADtools.git' }
