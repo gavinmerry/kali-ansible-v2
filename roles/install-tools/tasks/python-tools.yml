@@ -1,15 +1,9 @@
 ---
 - name: "Install pipx tools"
   community.general.pipx:
-    #name: "{{ item.name }}"
-    #source: "{{ item.url }}"
-    name: mitm6
-    source: git+https://github.com/dirkjanm/mitm6.git
+    name: "{{ item.name }}"
+    source: "{{ item.url }}"
   loop:
-    #- { name: 'certipy-ad', url: 'git+https://github.com/ly4k/Certipy.git' }
-    #- { name: 'autorecon', url: 'git+https://github.com/Tib3rius/AutoRecon.git' }
-    #- { name: 'mitm6', url: 'git+https://github.com/dirkjanm/mitm6.git' }
-    #- { name: 'coercer', url: 'git+https://github.com/p0dalirius/Coercer.git'}
-    #- { name: 'git-dumper', url: 'git+https://github.com/arthaud/git-dumper.git'}
-    #- { name: 'powerview.py', url: 'git+https://github.com/aniqfakhrul/powerview.py'}
+    - { name: 'git-dumper', url: 'git+https://github.com/arthaud/git-dumper.git'}
+    - { name: 'powerview.py', url: 'git+https://github.com/aniqfakhrul/powerview.py'}
   ignore_errors: true

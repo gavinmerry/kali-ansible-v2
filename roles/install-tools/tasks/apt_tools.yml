@@ -77,4 +77,7 @@
       - sprayhound
       - libkrb5-dev
       - npm
+      - mitm6
+      - autorecon
+      - coercer
     state: latest
