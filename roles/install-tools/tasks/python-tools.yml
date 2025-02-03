@@ -1,7 +1,7 @@
 ---
 - name: "Install pipx tools"
   command: pipx install {{ item.source }}
-    state: latest
+  state: latest
   loop:
     - { name: 'certipy-ad', source: 'git+https://github.com/ly4k/Certipy.git' }
     - { name: 'autorecon', source: 'git+https://github.com/Tib3rius/AutoRecon.git' }
