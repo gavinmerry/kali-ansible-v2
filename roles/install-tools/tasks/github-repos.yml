@@ -1,0 +1,50 @@
+---
+- name: "Installing useful github repos"
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.location }}"
+  loop:
+    - { repo: "https://github.com/Flangvik/SharpCollection", location: "/opt/SharpCollection" }
+    - { repo: "https://github.com/insidetrust/statistically-likely-usernames.git", location: "/usr/share/wordlists/statistically-likely-usernames"}
+    - { repo: "https://github.com/bitquark/dnspop.git", location: "/usr/share/wordlists/dnspop" }
+    - { repo: "https://github.com/lefayjey/linWinPwn", location: "/opt/linWinPwn" }
+    - { repo: "https://github.com/lgandx/PCredz", location: "/opt/PCredz" }
+    - { repo: "https://github.com/t3l3machus/hoaxshell", location: "/opt/hoaxshell" }
+    - { repo: "https://github.com/dirkjanm/PKINITtools.git", location: "/opt/PKINITtools" }
+    - { repo: "https://github.com/Wh04m1001/DFSCoerce.git", location: "/opt/DFSCoerce" }
+    - { repo: "https://github.com/ShutdownRepo/targetedKerberoast.git", location: "/opt/targetedKerberoast" }
+
+- name: Create temporary build directory
+  ansible.builtin.tempfile:
+    state: directory
+  register: build_dir
+
+- name: "Copying python script to download github releases"
+  copy:
+    src: "files/githubdownload.py"
+    dest: "{{ build_dir.path }}/githubdownload.py"
+    owner: root
+    group: root
+    mode: 0755
+  become: true
+  become_method: sudo
+
+- name: "Downloading github releases"
+  shell: "{{ build_dir.path }}/githubdownload.py {{ item.repo }} {{ item.regex }} {{ item.location }} {% if item.filename is defined %}{{ item.filename }}{% endif %}"
+  loop:
+    - { repo: "jpillora/chisel",  regex: "_linux_amd64.gz", location: "/opt/chisel" }
+    - { repo: "jpillora/chisel",  regex: "_windows_amd64.gz", location: "/opt/chisel" }
+    - { repo: "trufflesecurity/trufflehog", regex: "_linux_amd64.tar.gz", location: "/opt/trufflehog" }
+    - { repo: "knqyf263/pet", regex: "_linux_amd64.deb", location: "/tmp/pet" }
+    - { repo: "WithSecureLabs/chainsaw",  regex: "chainsaw_all_", location: "/opt/" }
+    - { repo: "DominicBreuker/pspy", regex: "pspy64", location: "/opt/" }
+  async: 45
+  poll: 0
+  become: true
+  become_method: sudo
+
+- name: Remove temporary build directory
+  ansible.builtin.file:
+    path: "{{ build_dir.path }}"
+    state: absent
+  when: build_dir.path is defined
