@@ -4,8 +4,8 @@
   become: true
 
   roles:
-    - common
+#    - common
 #    - customize-terminal
-#    - install-tools
+    - install-tools
 #    - install-pro
 #    - dotfiles
