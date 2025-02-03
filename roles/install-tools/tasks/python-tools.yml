@@ -1,11 +1,7 @@
 ---
-- name: Install Pipx Packages
-  community.general.pipx:
-    name: "{{ item.name }}"
-    source: "{{ item.url }}"
-    state: present
+- name: "Install pipx tools"
+  shell: pipx install {{ item.url }}
   loop:
-    - { name: "git-dumper", url: "git+https://github.com/arthaud/git-dumper.git" }
-    - { name: "powerview.py", url: "git+https://github.com/aniqfakhrul/powerview.py" }
-  environment:
-    PATH: "{{ ansible_env.HOME }}/.local/bin:{{ ansible_env.PATH }}"
+    - { name: 'git-dumper', url: 'git+https://github.com/arthaud/git-dumper.git'}
+    - { name: 'powerview.py', url: 'git+https://github.com/aniqfakhrul/powerview.py'}
+  ignore_errors: true
