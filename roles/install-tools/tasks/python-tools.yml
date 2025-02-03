@@ -1,8 +1,6 @@
 ---
 - name: "Install pipx tools"
-  community.general.pipx:
-    name: "{{ item.name }}"
-    source: "{{ item.url }}"
+  shell: pipx install {{ item.name }}
   loop:
     - { name: 'git-dumper', url: 'git+https://github.com/arthaud/git-dumper.git'}
     - { name: 'powerview.py', url: 'git+https://github.com/aniqfakhrul/powerview.py'}
