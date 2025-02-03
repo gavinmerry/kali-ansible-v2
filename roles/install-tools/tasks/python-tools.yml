@@ -13,8 +13,7 @@
 
 - name: "Install pip tools"
   ansible.builtin.pip:
-    name: "{{ item.name }}"
-    source: "{{ item.source }}"
+    name: "{{ item.source }}"
     state: latest
   loop:
     - { name: 'roadrecon', source: 'git+https://github.com/dirkjanm/ROADtools.git' }
