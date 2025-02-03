@@ -1,11 +1,11 @@
 ---
 - include_tasks: apt_tools.yml
-- include_tasks: go-tools.yml
-- include_tasks: github-repos.yml
-- include_tasks: python-tools.yml
-- include_tasks: gem-tools.yml
-- include_tasks: resolution-script.yml
-- include_tasks: cargo-tools.yml
-- include_tasks: pet_install_config.yml
-- include_tasks: Build_tools.yml
+#- include_tasks: go-tools.yml
+#- include_tasks: github-repos.yml
+#- include_tasks: python-tools.yml
+#- include_tasks: gem-tools.yml
+#- include_tasks: resolution-script.yml
+#- include_tasks: cargo-tools.yml
+#- include_tasks: pet_install_config.yml
+#- include_tasks: Build_tools.yml
 #- include_tasks: install_nessus.yml

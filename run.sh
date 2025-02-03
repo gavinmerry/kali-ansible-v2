@@ -72,7 +72,7 @@ if [[ -n "$NESSUS_KEY" ]] && [[ -n "$GIST_TOKEN" ]]; then
 elif [[ -n "$NESSUS_KEY" ]]; then
   NESSUS_KEY="$NESSUS_KEY" ansible-playbook playbook.yml --ask-become-pass
 elif [[ -n "$GIST_TOKEN" ]]; then
-  GIST_TOKEN="$GIST_TOKEN" ansible-playbook mplaybook.yml --ask-become-pass
+  GIST_TOKEN="$GIST_TOKEN" ansible-playbook playbook.yml --ask-become-pass
 else
   ansible-playbook playbook.yml --ask-become-pass
 fi

@@ -81,7 +81,7 @@
       - terminator
       - fzf
       - highlight
-      #- sublime-text
+      - sublime-text
       - eza
       - btop
       - zoxide
