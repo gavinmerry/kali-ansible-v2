@@ -58,10 +58,10 @@ else
 fi
 
 # Add pipx to PATH if not already present
-if ! grep -q 'export PATH="$PATH:/home/kali/.local/bin"' ~/.zshrc; then
-  echo 'export PATH="$PATH:/home/kali/.local/bin"' >> ~/.zshrc
-  source ~/.zshrc
-fi
+#if ! grep -q 'export PATH="$PATH:/home/kali/.local/bin"' ~/.zshrc; then
+#  echo 'export PATH="$PATH:/home/kali/.local/bin"' >> ~/.zshrc
+#  source ~/.zshrc
+#fi
 
 # Install Ansible Galaxy requirements
 ansible-galaxy install -r requirements.yml

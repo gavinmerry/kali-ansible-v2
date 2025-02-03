@@ -1,16 +1,9 @@
 ---
 - name: "Updating apt repo/cache"
-  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
-  become: true
-  become_method: sudo
-
-- name: "Upgrade all packages"
-  apt: upgrade=yes force_apt_get=yes
-  become: true
-  become_method: sudo
-  
-- name: "Installing Packages"
-  package:
+  apt: 
+    update_cache: yes
+    cache_valid_time: 3600
+    upgrade: yes
     name:
       - awscli
       - bloodhound
@@ -81,7 +74,6 @@
       - terminator
       - fzf
       - highlight
-      - sublime-text
       - eza
       - btop
       - zoxide
@@ -92,7 +84,4 @@
       - remmina
       - obsidian
       - sprayhound
-      - cmatrix
     state: latest
-  become: true
-  become_method: sudo
