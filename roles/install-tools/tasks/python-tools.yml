@@ -4,7 +4,7 @@
     #name: "{{ item.name }}"
     #source: "{{ item.url }}"
     name: mitm6
-    state: latest
+    source: git+https://github.com/dirkjanm/mitm6.git
   loop:
     #- { name: 'certipy-ad', url: 'git+https://github.com/ly4k/Certipy.git' }
     #- { name: 'autorecon', url: 'git+https://github.com/Tib3rius/AutoRecon.git' }
