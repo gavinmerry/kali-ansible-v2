@@ -76,4 +76,5 @@
       - obsidian
       - sprayhound
       - libkrb5-dev
+      - npm
     state: latest

@@ -13,6 +13,7 @@
     - { repo: "https://github.com/dirkjanm/PKINITtools.git", location: "/opt/PKINITtools" }
     - { repo: "https://github.com/Wh04m1001/DFSCoerce.git", location: "/opt/DFSCoerce" }
     - { repo: "https://github.com/ShutdownRepo/targetedKerberoast.git", location: "/opt/targetedKerberoast" }
+    - { repo: "https://github.com/dirkjanm/roadtools.git", location: "/opt/ROADRecon"}
 
 - name: Create temporary build directory
   ansible.builtin.tempfile:
