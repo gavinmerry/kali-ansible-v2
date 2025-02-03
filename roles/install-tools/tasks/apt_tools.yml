@@ -77,7 +77,6 @@
       - terminator
       - fzf
       - highlight
-      - sublime-text
       - eza
       - btop
       - zoxide
