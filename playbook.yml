@@ -5,7 +5,7 @@
 
   roles:
     - common
-    - customize-terminal
-    - install-tools
-    - install-pro
-    - dotfiles
+#    - customize-terminal
+#    - install-tools
+#    - install-pro
+#    - dotfiles

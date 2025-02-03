@@ -1,0 +1,6 @@
+---
+- name: "Copy res.sh"
+  copy:
+    src: "{{ role_path }}/files/res.sh"
+    dest: "{{ ansible_env.HOME }}"
+

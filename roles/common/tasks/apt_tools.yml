@@ -1,0 +1,98 @@
+---
+- name: "Updating apt repo/cache"
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  become: true
+  become_method: sudo
+
+- name: "Upgrade all packages"
+  apt: upgrade=yes force_apt_get=yes
+  become: true
+  become_method: sudo
+  
+- name: "Installing Packages"
+  package:
+    name:
+      - awscli
+      - bloodhound
+      - bloodhound.py
+      - certipy-ad
+      - cmake
+      - covenant-kbx
+      - docker.io
+      - docker-compose
+      - evil-winrm
+      - eyewitness
+      - gdb
+      - gdbserver
+      - ghidra
+      - gobuster
+      - golang
+      - jq
+      - keepassxc
+      - libreoffice
+      - libssl-dev
+      - nbtscan-unixwiz
+      - ncat
+      - neo4j
+      - nuclei
+      - parallel
+      - payloadsallthethings
+      - peass
+      - pipenv
+      - pipx
+      - python3-poetry
+      - python3-pwntools
+      - python3-unicorn
+      - rlwrap
+      - ropper
+      - seclists
+      - testssl.sh
+      - wireguard
+      - xclip
+      - xsel
+      - libpcap-dev
+      - asleap
+      - beef-xss
+      - bettercap
+      - dsniff
+      - hcxdumptool
+      - hcxtools
+      - hostapd
+      - hostapd-wpe
+      - isc-dhcp-server
+      - lighttpd
+      - mdk4
+      - sslstrip
+      - ntpdate
+      - flameshot
+      - exiftool
+      - spice-vdagent 
+      - golang-go
+      - feroxbuster
+      - rsyslog
+      - ufw
+      - dconf-cli
+      - cargo
+      - oscanner
+      - tnscmd10g
+      - wkhtmltopdf
+      - wine64
+      - ipcalc
+      - terminator
+      - fzf
+      - highlight
+      #- sublime-text
+      - eza
+      - btop
+      - zoxide
+      - entr
+      - strace
+      - ltrace
+      - musl-tools
+      - remmina
+      - obsidian
+      - sprayhound
+      - cmatrix
+    state: latest
+  become: true
+  become_method: sudo

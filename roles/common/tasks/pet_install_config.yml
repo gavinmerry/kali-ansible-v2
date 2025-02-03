@@ -1,0 +1,42 @@
+---
+- name: "Find PET .deb file"
+  find:
+    paths: /tmp/pet
+    patterns: "*.deb"
+  register: deb_files
+
+- name: "Install PET"
+  become: true
+  become_method: sudo
+  command: dpkg -i "{{ item.path }}"
+  loop: "{{ deb_files.files }}"
+  when: deb_files.files | length > 0
+
+- name: "Create directory for pet config file"
+  file:
+    path: /home/kali/.config/pet
+    state: directory
+    owner: kali
+    group: kali
+    mode: '0755'
+
+- name: "Moving pet_config.toml file with secrets to .config/pet location"
+  template:
+    src: files/pet_config.toml
+    dest: /home/kali/.config/pet/config.toml
+  vars:
+    access_token: "{{ gist_token }}"
+    gist_id: "{{ gist_id_ }}"
+
+- name: "Ensure correct permissions for pet config file"
+  file:
+    path: /home/kali/.config/pet/config.toml
+    owner: kali
+    group: kali
+    mode: '0644'
+  
+- name: "Create blank snippet file"
+  command: touch /home/kali/.config/pet/snippet.toml
+
+- name: "Sync pet"
+  shell: pet sync

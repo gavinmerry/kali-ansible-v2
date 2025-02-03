@@ -1,0 +1,11 @@
+---
+- name: "Installing tools from cargo"
+  community.general.cargo:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - rustscan
+  become: true
+  become_method: sudo
+
+

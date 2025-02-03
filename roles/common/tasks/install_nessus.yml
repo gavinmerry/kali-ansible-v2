@@ -1,0 +1,63 @@
+---
+- name: "Fetch latest Nessus version URL"
+  uri:
+    url: "https://www.tenable.com/downloads/nessus"
+    return_content: yes
+  register: nessus_download_page
+
+- name: "Extract download URL"
+  set_fact:
+    nessus_download_url: "https://www.tenable.com/downloads/api/v2/pages/nessus/files/{{ nessus_download_page.content | regex_search('Nessus-[0-9.]+-debian[0-9]+_amd64.deb', limit=1) }}"
+
+- name: "Download Nessus installer"
+  get_url:
+    url: "{{ nessus_download_url }}"
+    dest: "/tmp/nessus_installer.deb"
+
+- name: "Install Nessus"
+  become: true
+  become_method: sudo
+  command: dpkg -i /tmp/nessus_installer.deb
+
+- name: "Start Nessus Daemon"
+  become: true
+  become_method: sudo
+  shell: /bin/systemctl start nessusd.service
+
+- name: "Check if Nessus user already exists"
+  become: true
+  become_method: sudo
+  command: sudo /opt/nessus/sbin/nessuscli lsuser
+  register: nessus_user_info
+  ignore_errors: true
+
+- name: "Add Nessus User"
+  become: true
+  become_method: sudo
+  shell: 'sudo /opt/nessus/sbin/nessuscli adduser nessus'
+  args:
+    stdin: |
+      nessus
+      nessus
+      y
+      
+      y
+  when: "'nessus' not in nessus_user_info.stdout"
+
+- name: "Check if already licensed"
+  become: true
+  become_method: sudo
+  command: sudo /opt/nessus/sbin/nessuscli fetch --check
+  register: license_info
+  ignore_errors: true
+
+#- name: "Read License key file"
+#  set_fact:
+#    license_key: "{{ nessus_license }}"
+#  when: "'Updates are configured properly' not in license_info.stdout"
+
+- name: "License Nessus"
+  become: true
+  become_method: sudo
+  shell: /opt/nessus/sbin/nessuscli fetch --register "{{ nessus_license }}"
+  when: "'Updates are configured properly' not in license_info.stdout"

@@ -45,8 +45,17 @@ history -d $((HISTCMD-1)) 2>/dev/null || true
 history -d $((HISTCMD-1)) 2>/dev/null || true
 
 # Install necessary tools
-apt install -y ansible
-pipx install jmespath
+#pipx install jmespath
+
+# check if ansible has installed correctly
+ansible_version=$(ansible --version 2>/dev/null)
+
+if [[ $? -eq 0 ]]; then
+    echo "Ansible is installed: $(echo "$ansible_version" | head -n 1)"
+else
+    echo "Ansible is NOT installed. Installing now..."
+    sudo apt update && sudo apt install -y ansible
+fi
 
 # Add pipx to PATH if not already present
 if ! grep -q 'export PATH="$PATH:/home/kali/.local/bin"' ~/.zshrc; then
@@ -57,18 +66,15 @@ fi
 # Install Ansible Galaxy requirements
 ansible-galaxy install -r requirements.yml
 
-# Ensure script is running with sudo
-sudo whoami
-
 # Run the main Ansible playbook with optional environment variables
 if [[ -n "$NESSUS_KEY" ]] && [[ -n "$GIST_TOKEN" ]]; then
-  NESSUS_KEY="$NESSUS_KEY" GIST_TOKEN="$GIST_TOKEN" ansible-playbook main.yml
+  NESSUS_KEY="$NESSUS_KEY" GIST_TOKEN="$GIST_TOKEN" ansible-playbook playbook.yml --ask-become-pass
 elif [[ -n "$NESSUS_KEY" ]]; then
-  NESSUS_KEY="$NESSUS_KEY" ansible-playbook main.yml
+  NESSUS_KEY="$NESSUS_KEY" ansible-playbook playbook.yml --ask-become-pass
 elif [[ -n "$GIST_TOKEN" ]]; then
-  GIST_TOKEN="$GIST_TOKEN" ansible-playbook main.yml
+  GIST_TOKEN="$GIST_TOKEN" ansible-playbook mplaybook.yml --ask-become-pass
 else
-  ansible-playbook main.yml
+  ansible-playbook playbook.yml --ask-become-pass
 fi
 
 # Immediately clear variables

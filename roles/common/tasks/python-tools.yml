@@ -1,0 +1,18 @@
+---
+- name: "Install pipx tools"
+  community.general.pipx:
+    name: "{{ item.name }}"
+    source: "{{ item.url }}"
+    state: latest
+  loop:
+    - { name: 'impacket', url: 'git+https://github.com/fortra/impacket.git' }
+    #- { name: 'crackmapexec', url: 'git+https://github.com/byt3bl33d3r/CrackMapExec.git' } No longer maintained by deleopler
+    - { name: 'Netexec', url: 'git+https://github.com/Pennyw0rth/NetExec.git' }
+    - { name: 'certipy-ad', url: 'git+https://github.com/ly4k/Certipy.git' }
+    - { name: 'autorecon', url: 'git+https://github.com/Tib3rius/AutoRecon.git' }
+    #- { name: 'roadrecon', url: 'git+https://github.com/dirkjanm/ROADtools.git' }
+    - { name: 'mitm6', url: 'git+https://github.com/dirkjanm/mitm6.git' }
+    - { name: 'coercer', url: 'git+https://github.com/p0dalirius/Coercer.git'}
+    - { name: 'git-dumper', url: 'git+https://github.com/arthaud/git-dumper.git'}
+    - { name: 'powerview.py', url: 'git+https://github.com/aniqfakhrul/powerview.py.git'}
+  ignore_errors: true

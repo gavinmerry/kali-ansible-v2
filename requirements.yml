@@ -1,0 +1,16 @@
+- src: gantsign.visual-studio-code
+- src: gantsign.oh-my-zsh
+- src: chaosmail.sublime-text
+  sublime_version: 4
+  sublime_package_control: true
+  sublime_packages:
+    - 'https://github.com/skuroda/Sublime-AdvancedNewFile.git'
+    - 'https://github.com/weslly/ColorPicker.git'
+    - 'https://github.com/revolunet/sublimetext-markdown-preview'
+    - 'https://github.com/randy3k/Terminus.git'
+    - 'https://github.com/dzhibas/SublimePrettyJson.git'
+    - 'https://github.com/jdavisclark/JsFormat.git'
+    - 'https://github.com/molovo/sublime-zsh.git'
+    - 'https://github.com/facelessuser/BracketHighlighter.git'
+    - 'https://github.com/stevebasher/Split-Line-Sublime-Plugin.git'
+    - 'https://github.com/kaste/Compare-Side-By-Side.git'

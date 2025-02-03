@@ -1,0 +1,6 @@
+---
+- name: "run Build_tools.sh"
+  become: true
+  become_method: sudo
+  shell: "bash {{ role_path }}/files/Build_tools.sh"
+
