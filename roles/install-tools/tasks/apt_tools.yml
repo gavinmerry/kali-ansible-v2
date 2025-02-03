@@ -4,6 +4,9 @@
     update_cache: yes
     cache_valid_time: 3600
     upgrade: yes
+  
+- name: "Installing Packages"
+  apt:
     name:
       - awscli
       - bloodhound
@@ -74,6 +77,7 @@
       - terminator
       - fzf
       - highlight
+      - sublime-text
       - eza
       - btop
       - zoxide
