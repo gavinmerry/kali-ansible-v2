@@ -1,3 +1,6 @@
 ---
 - name: "install gobuster"
   shell: go install github.com/OJ/gobuster/v3@latest
+
+- name: "Install Terrapin Scanner"
+  shell: go install github.com/RUB-NDS/Terrapin-Scanner@latest
