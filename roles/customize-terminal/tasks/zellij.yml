@@ -1,0 +1,12 @@
+---
+- name: "Download Zellij"
+  shell: wget "https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz" -P /tmp/
+
+- name: "Extract Zellij Binary"
+  become: true
+  become_method: sudo
+  ansible.builtin.unarchive:
+    src: /tmp/zellij-x86_64-unknown-linux-musl.tar.gz
+    dest: /usr/bin/
+    remote_src: yes
+    mode: 0775

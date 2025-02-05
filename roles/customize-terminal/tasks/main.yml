@@ -1,0 +1,2 @@
+---
+- include_tasks: pet_install_config.yml
